@@ -3,7 +3,7 @@
  */
 package dev.patten.services;
 
-import java.util.List;
+import dev.patten.services.read_only.ServiceREADable;
 
 /**
  * @author james
@@ -11,7 +11,7 @@ import java.util.List;
  * 
  * NOTE: Testing out using T in place of int. Replace with <T, PK extends Integer>, Integer, or int for typesafety/ simplicity
  */
-public interface Serviceable<T> {
+public interface Serviceable<T> extends ServiceREADable<T>{
 	
 	/**
 	 * CREATE
@@ -20,16 +20,9 @@ public interface Serviceable<T> {
 	public boolean add(T record);
 
 	/**
-	 * READ (Single)
-	 * Call on DAO impl to retrieve a single record with @param id from the DB
+	 * READ
+	 * guaranteed by ServiceREADable<T>
 	 */
-	public T get(T id);
-
-	/**
-	 * READ (All)
-	 * Call on DAO impl to retrieve a List<T> of all records from a persistence layer table
-	 */
-	public List<T> getAll();
 	
 	/**
 	 * UPDATE
@@ -41,6 +34,6 @@ public interface Serviceable<T> {
 	 * DELETE
 	 * Call on DAO impl to delete a record with @param id in the persistence layer
 	 */
-	public boolean delete(T id);
+	public boolean delete(int id);
 	
 }

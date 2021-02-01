@@ -3,8 +3,6 @@
  */
 package dev.patten.services;
 
-import java.util.List;
-
 import dev.patten.entities.Employee;
 
 /**
@@ -14,4 +12,5 @@ import dev.patten.entities.Employee;
 public interface EmployeeService extends Serviceable<Employee> {
 
 	boolean submitForm();
+	
 }
