@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<title>TRMS - Dashboard</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Internal Tuition Reimbursement Management System</h1>
+		<h2>Dashboard</h2>
+
+		<div class="form">
+			<div class="form-group">
+				<label for="username1">Username</label> <input type="username"
+					class="form-control" id="username1" aria-describedby="usernameHelp"
+					placeholder="Enter username">
+				<!-- <small id="usernameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group">
+				<label for="password1">Password</label> <input type="password"
+					class="form-control" id="password1" placeholder="Password">
+			</div>
+			<button type="login" class="btn btn-primary" onclick="login();">Submit</button>
+		</div>
+	</div>
+</body>
+
+<script>
+
+    function login() {
+
+        let aUsername = document.getElementById("username1").value;
+        let aPassword = document.getElementById("password1").value;
+
+        //Lets make a JS Object with these variables and any values we will need.
+        //Doing so will make it easy to make a JSON out of these values.
+        let login = {
+            username: aUsername,
+            password: aPassword,
+        }
+
+        //Make an AJAX Call
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        }
+
+        xhttp.open("POST", "http://localhost:8080/TuitionReimMGMTSys/login.do?username="+aUsername+"&password="+aPassword, true);
+
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send(JSON.stringify(login));
+    }
+    
+</script>
+
+</html>
