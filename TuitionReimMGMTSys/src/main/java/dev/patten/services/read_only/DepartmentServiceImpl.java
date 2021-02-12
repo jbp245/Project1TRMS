@@ -13,7 +13,7 @@ import dev.patten.repositories.READable;
  * @author james
  *
  */
-public class DepartmentServiceImpl implements ServiceREADable<Department> {
+public class DepartmentServiceImpl implements DepartmentService {
 
 	public READable<Department> dao = new DepartmentDAOimpl();
 	

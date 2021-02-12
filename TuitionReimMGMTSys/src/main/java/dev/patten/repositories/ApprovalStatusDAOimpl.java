@@ -3,6 +3,7 @@
  */
 package dev.patten.repositories;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +24,29 @@ public class ApprovalStatusDAOimpl implements CRUDable<ApprovalStatus> {
 
 	@Override
 	public boolean add(ApprovalStatus record) {
-		// TODO should implement
+		try {
+			String sql = "CALL add_ApprovalStatus(?,?,?,?,?,?,?,?,?,?,?)";
+			CallableStatement cs = conn.prepareCall(sql);
+
+			cs.setString(1, Integer.toString(record.getId()));
+			cs.setString(2, Integer.toString(record.getStatus()));
+			cs.setString(3, record.getStatus_name());
+			cs.setString(4, Integer.toString(record.getEvent_id()));
+			cs.setString(5, Boolean.toString(record.isSup_approved()));
+			cs.setString(6, record.getSup_appr_desc());
+			cs.setString(5, Boolean.toString(record.isDept_approved()));
+			cs.setString(6, record.getDept_appr_desc());
+			cs.setString(5, Boolean.toString(record.isBenco_approved()));
+			cs.setString(6, record.getBenco_appr_desc());
+			cs.setString(4, Integer.toString(record.getGrade()));
+			
+			cs.execute();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		return false;
 	}
 
@@ -49,6 +72,8 @@ public class ApprovalStatusDAOimpl implements CRUDable<ApprovalStatus> {
 				a.setDept_appr_desc(rs.getString("DEP_APPR_DESC"));
 				a.setBenco_approved(rs.getBoolean("BENCO_APPR"));
 				a.setStatus_name(rs.getString("STATUS_NAME"));
+				a.setBenco_appr_desc(rs.getString("BENCO_APPR_DESC"));
+				a.setGrade(rs.getInt("GRADE"));
 
 				return a;
 			}
@@ -85,10 +110,10 @@ public class ApprovalStatusDAOimpl implements CRUDable<ApprovalStatus> {
 	public boolean update(ApprovalStatus change) {
 
 		try {
-			String sql = "UPDATE Approval_Status SET status = ?, event_id = ?, super_appr = ?, super_appr_desc = ?, dep_appr = ?, dep_appr_desc = ?, benco_appr = ?, status_name = ? WHERE form_id = ?";
+			String sql = "UPDATE Approval_Status SET status = ?, event_id = ?, super_appr = ?, super_appr_desc = ?, dep_appr = ?, dep_appr_desc = ?, benco_appr = ?, status_name = ?, benco_appr_desc = ?, grade = ? WHERE form_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setString(9, Integer.toString(change.getId()));
+			ps.setString(11, Integer.toString(change.getId()));
 			ps.setString(1, Integer.toString(change.getStatus()));
 			ps.setString(2, Integer.toString(change.getEvent_id()));
 			ps.setString(3, Boolean.toString(change.isSup_approved()));
@@ -97,6 +122,8 @@ public class ApprovalStatusDAOimpl implements CRUDable<ApprovalStatus> {
 			ps.setString(6, change.getDept_appr_desc());
 			ps.setString(7, Boolean.toString(change.isBenco_approved()));
 			ps.setString(8, change.getStatus_name());
+			ps.setString(9, change.getBenco_appr_desc());
+			ps.setString(10, Integer.toString(change.getGrade()));
 
 			ps.execute();
 			return true;

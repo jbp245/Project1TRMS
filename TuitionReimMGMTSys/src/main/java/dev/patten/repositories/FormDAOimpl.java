@@ -25,25 +25,34 @@ public class FormDAOimpl implements CRUDable<Form> {
 	@Override
 	public boolean add(Form record) {
 		try {
-
+			System.out.println(record);
 			String sql = "CALL add_form(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			CallableStatement cs = conn.prepareCall(sql);
 
+			int bool = record.isGrade_format() ? 1 :0;
+
+			
 			cs.setString(1, record.getFirst_name());
 			cs.setString(2, record.getLast_name());
 			cs.setString(3, Integer.toString(record.getEmp_id()));
-			cs.setString(4, record.getDate().toString());
-			cs.setString(5, record.getTime().toString());
+			cs.setNull(4, java.sql.Types.DATE);
+			//cs.setString(4, record.getDate());
+			//cs.setString(5, record.getTime());
+			cs.setNull(5, java.sql.Types.TIME);
 			cs.setString(6, record.getLocation());
 			cs.setString(7, record.getDescription());
-			cs.setString(7, Double.toString(record.getCost()));
-			cs.setString(8, Boolean.toString(record.isGrade_format()));
-			cs.setString(9, Integer.toString(record.getGrade_cutoff()));
-			cs.setString(10, Integer.toString(record.getEvent_type_id()));
-			cs.setBlob(11, record.getAttachment());
-			cs.setString(12, Integer.toString(record.getApproval_type()));
-			cs.setString(13, Integer.toString(record.getTime_off()));
-			cs.setString(14, Boolean.toString(record.isUrgent()));
+			cs.setInt(8, (int)record.getCost());
+			cs.setString(9, Integer.toString(bool));
+			cs.setString(10, Integer.toString(record.getGrade_cutoff()));
+			cs.setString(11, Integer.toString(record.getEvent_type_id()));
+			//cs.setBlob(12, record.getAttachment());
+			cs.setNull(12, java.sql.Types.BLOB);
+			System.out.println(record.getAttachment());
+			cs.setString(13, Integer.toString(record.getApproval_type()));
+			cs.setString(14, Integer.toString(record.getTime_off()));
+			bool = record.isUrgent() ? 1 :0;
+			System.out.println(bool);
+			cs.setString(15, Integer.toString(bool));
 
 			cs.execute();
 			return true;
@@ -73,8 +82,9 @@ public class FormDAOimpl implements CRUDable<Form> {
 				a.setFirst_name(rs.getString("FIRST_NAME"));
 				a.setLast_name(rs.getString("LAST_NAME"));
 				a.setEmp_id(rs.getInt("EMP_ID"));
-				a.setDate(rs.getDate("EVENT_DATE"));
-				a.setTime(rs.getTimestamp("EVENT_TIME"));
+				//made these strings
+				a.setDate("null");
+				a.setTime("null");
 				a.setLocation(rs.getString("EVENT_LOCATION"));
 				a.setDescription(rs.getString("EVENT_DESCRIPTION"));
 				a.setCost(rs.getDouble("EVENT_COST"));
@@ -128,8 +138,8 @@ public class FormDAOimpl implements CRUDable<Form> {
 			ps.setString(1, change.getFirst_name());
 			ps.setString(2, change.getLast_name());
 			ps.setString(3, Integer.toString(change.getEmp_id()));
-			ps.setString(4, change.getDate().toString());
-			ps.setString(5, change.getTime().toString());
+			ps.setString(4, change.getDate());
+			ps.setString(5, change.getTime());
 			ps.setString(6, change.getLocation());
 			ps.setString(7, Double.toString(change.getCost()));
 			ps.setString(8, Boolean.toString(change.isGrade_format()));

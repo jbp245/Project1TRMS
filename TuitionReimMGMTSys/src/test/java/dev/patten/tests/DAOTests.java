@@ -37,14 +37,14 @@ import dev.patten.util.JDBCConnection;
  */
 @TestMethodOrder(MethodName.class)
 public class DAOTests {
-	
+
 	public static Connection conn = JDBCConnection.getConnection();
 
 	// if impl's unwritten, new ClassDAOimpl(){ @override methods }
 	// private static GDAO<Employee> emp = new EmployeeDAOimpl();
 
 	private class ApprovalStatusDAOimpl implements CRUDable<ApprovalStatus> {
-		
+
 		@Override
 		public boolean add(ApprovalStatus record) {
 			// TODO should implement
@@ -149,8 +149,8 @@ public class DAOTests {
 
 	@Test
 	void apprStatusGet() {
-		ApprovalStatus test = new ApprovalStatusDAOimpl().get(1);
-		Assertions.assertEquals(1, test.getId());
+		ApprovalStatus test = new ApprovalStatusDAOimpl().get(39);
+		Assertions.assertEquals(39, test.getId());
 	}
 
 	@Test
@@ -158,7 +158,7 @@ public class DAOTests {
 		List<ApprovalStatus> test = new ApprovalStatusDAOimpl().getAll();
 		Assertions.assertFalse(test.isEmpty());
 	}
-	
+
 	private class DepartmentDAOimpl implements READable<Department> {
 
 		@Override
@@ -223,7 +223,7 @@ public class DAOTests {
 		List<Department> test = new DepartmentDAOimpl().getAll();
 		Assertions.assertFalse(test.isEmpty());
 	}
-	
+
 	private class EmployeeDAOimpl implements CRUDable<Employee> {
 
 		@Override
@@ -345,7 +345,7 @@ public class DAOTests {
 			return false;
 		}
 	}
-	
+
 	@Test
 	void employeeGet() {
 		Employee test = new EmployeeDAOimpl().get(3);
@@ -409,7 +409,7 @@ public class DAOTests {
 			return eventGrades;
 		}
 	}
-	
+
 	@Test
 	void eventGradesGet() {
 		EventGrades test = new EventGradesDAOimpl().get(1);
@@ -423,7 +423,7 @@ public class DAOTests {
 	}
 
 	/**
-	 * EventTypeDAOimpl 
+	 * EventTypeDAOimpl
 	 *
 	 */
 	private class EventTypeDAOimpl implements READable<EventType> {
@@ -477,7 +477,7 @@ public class DAOTests {
 			return eventTypes;
 		}
 	}
-	
+
 	@Test
 	void eventTypeGet() {
 		EventType test = new EventTypeDAOimpl().get(1);
@@ -543,8 +543,8 @@ public class DAOTests {
 					a.setFirst_name(rs.getString("FIRST_NAME"));
 					a.setLast_name(rs.getString("LAST_NAME"));
 					a.setEmp_id(rs.getInt("EMP_ID"));
-					a.setDate(rs.getDate("EVENT_DATE"));
-					a.setTime(rs.getTimestamp("EVENT_TIME"));
+					a.setDate(rs.getString("EVENT_DATE"));
+					a.setTime(rs.getString("EVENT_TIME"));
 					a.setLocation(rs.getString("EVENT_LOCATION"));
 					a.setDescription(rs.getString("EVENT_DESCRIPTION"));
 					a.setCost(rs.getDouble("EVENT_COST"));
@@ -637,8 +637,8 @@ public class DAOTests {
 
 	@Test
 	void formGet() {
-		Form test = new FormDAOimpl().get(1);
-		Assertions.assertEquals(1, test.getId());
+		Form test = new FormDAOimpl().get(39);
+		Assertions.assertEquals(39, test.getId());
 	}
 
 	@Test
@@ -697,7 +697,7 @@ public class DAOTests {
 			return roles;
 		}
 	}
-	
+
 	@Test
 	void rolesGet() {
 		Roles test = new RolesDAOimpl().get(1);

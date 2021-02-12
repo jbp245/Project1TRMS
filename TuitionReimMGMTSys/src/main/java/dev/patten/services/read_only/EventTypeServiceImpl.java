@@ -13,7 +13,7 @@ import dev.patten.repositories.READable;
  * @author james
  *
  */
-public class EventTypeServiceImpl implements ServiceREADable<EventType> {
+public class EventTypeServiceImpl implements EventTypeService {
 
 	public READable<EventType> dao = new EventTypeDAOimpl();
 	

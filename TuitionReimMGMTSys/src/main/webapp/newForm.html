@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>TRMS - New Form</title>
+</head>
+
+<body onload="prepop();">
+    <div class="container">
+        <h1>Internal Tuition Reimbursement Management System</h1>
+        <h2>New Form</h2>
+        <p>Please fill out this form to apply for tuition reimbursement. <br>
+            Employees are allowed up to $1000 in reimbursements per calendar year to apply towards new learning. <br>
+        <ul>
+            <li>University Courses: 80%</li>
+            <li>Seminars: 60%</li>
+            <li>Certification Prep Classes: 75%</li>
+            <li>Certification: 100%</li>
+            <li>Technical Training: 90%</li>
+            <li>Other: 30%</li>
+        </ul>
+        </p>
+
+        <h3>Employee Information</h3>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">First Name</span>
+            </div>
+            <input id="FirstName" type="text" class="form-control" placeholder="First Name" aria-label="Username"
+                aria-describedby="basic-addon1" value="">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Last Name</span>
+            </div>
+            <input id="LastName" type="text" class="form-control" placeholder="Last Name" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Employee ID</span>
+            </div>
+            <input id="EmpId" type="text" class="form-control" placeholder="Employee ID" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Role</span>
+            </div>
+            <input id="Role" type="text" class="form-control" placeholder="Role" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Department</span>
+            </div>
+            <input id="Dept" type="text" class="form-control" placeholder="Department" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Supervisor</span>
+            </div>
+            <input id="SVisor" type="text" class="form-control" placeholder="Supervisor" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <h3>Event Information</h3>
+        <h5>Event Type</h5>
+        <div class="form-control mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g1" id="uc" value=".8" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    University Course
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g1" id="sem" value=".6">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Seminar
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g1" id="cpc" value=".75">
+                <label class="form-check-label" for="flexRadioDefault3">
+                    Certification Prep Class(es)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g1" id="cert" value="1">
+                <label class="form-check-label" for="flexRadioDefault4">
+                    Certification
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g1" id="tech" value=".9">
+                <label class="form-check-label" for="flexRadioDefault5">
+                    Technical Training
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g1" id="oth" value=".3">
+                <label class="form-check-label" for="flexRadioDefault6">
+                    Other
+                </label>
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Description</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" id="DESC"></textarea>
+        </div>
+
+        <div class="input-group date mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="date">Date</span>
+            </div>
+            <input type="date" class="form-control " id="DATE" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group time mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="time">Time</span>
+            </div>
+            <input type="time" class="form-control " id="TIME" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Location</span>
+            </div>
+            <input id="LOC" type="text" class="form-control" placeholder="Location" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Cost $</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="amount">
+            <div class="input-group-append">
+                <span class="input-group-text">.00</span>
+            </div>
+        </div>
+
+        <h5>Grade Format</h5>
+        <div class="form-control mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g2" id="flexRadioDefault1" value="0" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Exam
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g2" id="flexRadioDefault2" value="1">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Presentation
+                </label>
+            </div>
+        </div>
+
+        <h5>Passing Grade</h5>
+        <div class="form-control mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g3" id="flexRadioDefault2" value="3" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    C
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="g3" id="flexRadioDefault2" value="6" >
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Pass
+                </label>
+            </div>
+        </div>
+        <h3>Other</h3>
+        <h5>Preapproved</h5>
+        <div class="form-control mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="g4" id="flexRadioDefault2" value="1">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Yes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="g4" id="flexRadioDefault2" value="0" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                No
+            </label>
+        </div>
+    </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Attachment</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Timeoff</span>
+            </div>
+            <input id="TOFF" type="number" class="form-control" placeholder="Employee ID" aria-label="Username"
+                aria-describedby="basic-addon1" value="0" min="0">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Projected Reimbursement</span>
+            </div>
+            <input id="Proj" type="text" class="form-control" placeholder="$-.--" aria-label="Username"
+                aria-describedby="basic-addon1" value="" readonly>
+        </div>
+
+        <button type="calculate-reimbursements" class="btn btn-primary" onclick="calcReim();">Project Reimbursement</button>
+
+        <button type="submit-form" class="btn btn-primary" onclick="trueSubmit();">Submit</button>
+    </div>
+
+</body>
+
+<script>
+
+    function calcReim() {
+        var proj_ele = document.getElementById("Proj");
+        proj_ele.removeAttribute("readonly");
+
+        var etype_val = getRadioVal('g1');
+
+        var cost_val = document.getElementById("amount").value;
+        console.log(cost_val);
+
+        var projected_cost = cost_val*etype_val;
+
+        proj_ele.value = "$"+projected_cost;
+        proj_ele.setAttributeNode(document.createAttribute("readonly"));
+
+    }
+
+    function mapEvent(val){
+        let form_vals = ['.8','.6','.75','1','.9','.3'];
+        let val_id = [1,2,3,4,5,6];
+        for (var i = 0, len = form_vals.length; i < len; i++ ){
+            if (form_vals[i] == val){ return val_id[i]; break; }
+        }
+    }
+
+    function getRadioVal(name) {
+        var val;
+        // get list of radio buttons with specified name
+        var elements = Array.from(document.querySelectorAll("input[name=" + name + "]"));
+
+        // loop through list of radio buttons
+        for (var i = 0, len = elements.length; i < len; i++) {
+            if (elements[i].checked) { // radio checked?
+                val = elements[i].value; // if so, hold its value in val
+                break; // and break out of for loop
+            }
+        }
+        console.log(val);
+        console.log(typeof(val));
+        return val; // return value of checked radio or undefined if none checked
+    }
+
+    function prepop() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                emp = JSON.parse(this.responseText);
+                console.log(emp);
+
+                let fname = `${emp.first_name}`;
+                document.getElementById("FirstName").value = fname;
+                var att = document.createAttribute("readonly");
+                document.getElementById("FirstName").setAttributeNode(att);
+
+                let lname = `${emp.last_name}`;
+                document.getElementById("LastName").value = lname;
+                var att = document.createAttribute("readonly");
+                document.getElementById("LastName").setAttributeNode(att);
+
+                let empid = `${emp.id}`;
+                document.getElementById("EmpId").value = empid;
+                var att = document.createAttribute("readonly");
+                document.getElementById("EmpId").setAttributeNode(att);
+
+                getRole();
+                getDept();
+                getSuperVisor();
+
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getCurrentUser.do");
+        xhttp.send();
+    }
+
+    function getRole() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                role = JSON.parse(this.responseText);
+                console.log(role);
+
+                let role_name = `${role.role_name}`;
+                document.getElementById("Role").value = role_name;
+                var att = document.createAttribute("readonly");
+                document.getElementById("Role").setAttributeNode(att);
+                document.getElementById("Role").setAttribute("data-id", `${emp.role_id}`);
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getRole.do?id=" + `${emp.role_id}`, true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function getDept() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                dept = JSON.parse(this.responseText);
+                console.log(dept);
+
+                let deptname = `${dept.dept_name}`;
+                document.getElementById("Dept").value = deptname;
+                var att = document.createAttribute("readonly");
+                document.getElementById("Dept").setAttributeNode(att);
+                document.getElementById("Dept").setAttribute("data-id", `${emp.department_id}`);
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getDepartment.do?id=" + `${emp.department_id}`, true);
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send();
+    }
+
+    function getSuperVisor() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                superv = JSON.parse(this.responseText);
+                console.log(superv);
+
+                let supername = `${superv.first_name} ${superv.last_name}`;
+                document.getElementById("SVisor").value = supername;
+                var att = document.createAttribute("readonly");
+                document.getElementById("SVisor").setAttributeNode(att);
+                document.getElementById("SVisor").setAttribute("data-id", `${emp.super_id}`);
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getSuperById.do?id=" + `${emp.super_id}`, true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function trueSubmit() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                emp = JSON.parse(this.responseText);
+                submitForm();
+
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getCurrentUser.do");
+        xhttp.send();
+    }
+
+    function submitForm() {
+
+        let fname = document.getElementById("FirstName").value;
+        let lname = document.getElementById("LastName").value;
+        let id = parseInt(document.getElementById("EmpId").value);
+        // dont really need these three below
+        let role_id = parseInt(`${emp.role_id}`);
+        let dname= parseInt(`${emp.department_id}`);
+        let supid = parseInt(`${emp.super_id}`);
+
+        let evtype = parseInt(mapEvent(getRadioVal('g1')));
+        console.log("is number: " + evtype + " " + typeof(evtype));
+        let descrip = document.getElementById("DESC").value;
+        let date_val = document.getElementById("DATE").value;
+        date_val = date_val.toString();
+        console.log(date_val);
+        let time_val = document.getElementById("TIME").value.replace(":","");
+        console.log(time_val);
+        let locate = document.getElementById("LOC").value;
+        let cost_val = parseFloat(document.getElementById("amount").value).toFixed(2);
+        let g_format = Boolean(parseInt(getRadioVal('g2')));
+        //console.log("test2: "+g_format);
+        let g_cutoff = parseInt(getRadioVal('g3'));
+        //console.log("test3: "+g_cutoff);
+
+        let prep = parseInt(getRadioVal('g4'));
+        let att = document.getElementById("inputGroupFile01").value;
+        let time_off = parseInt(document.getElementById("TOFF").value);
+
+        let submit = {
+            first_name: fname,
+            last_name: lname,
+            emp_id: id,
+            role_id: role_id,
+            department_id: dname,
+            super_id: supid,
+
+            event_type_id: evtype,
+            description: descrip,
+            date: date_val,
+            time: time_val,
+            location: locate,
+            cost: cost_val,
+            grade_cutoff: g_cutoff,
+            grade_format: g_format,
+
+            approval_type: prep,
+            attachment: null,
+            time_off: time_off,
+        }
+		console.log(submit)
+        
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                //await sleep(1000);
+                window.location.href = "http://localhost:8080/TuitionReimMGMTSys/dashboard.html";
+            }
+        }
+
+        xhttp.open("POST", "http://localhost:8080/TuitionReimMGMTSys/postForm.do",true)
+
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send(JSON.stringify(submit));
+    }
+
+</script>
+
+</html>

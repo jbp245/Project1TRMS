@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<link rel="shortcut icon" href="" />
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<title>TRMS - Dashboard</title>
+
+<style>
+    td{ text-align: center;}
+</style>
+</head>
+
+<!--  wont reload getUsersForms() -->
+<body onload="loggedInUser(); getDept();">
+	<div class="container">
+        <h6 id="welcome"></h6> <button type="logout"
+        class="btn btn-primary" onclick="logout();">Logout</button>
+		<h1>Internal Tuition Reimbursement Management System</h1>
+		<h2>Dashboard</h2>
+
+		<div class="my-5 mx-4" style="width: 20%; float: left">
+			<table class="table">
+				<thead>
+					<h5>Employee Information</h5>
+					<tr>
+						<th scope="col">Info</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">ID</th>
+						<td id="ID"></td>
+					</tr>
+					<tr>
+						<th scope="row">First Name</th>
+						<td id="FN"></td>
+					</tr>
+					<tr>
+						<th scope="row">Last Name</th>
+						<td id="LN"></td>
+					</tr>
+					<tr>
+						<th scope="row">Department</th>
+						<td id="DEPT"></td>
+					</tr>
+					<tr>
+						<th scope="row">Supervisor</th>
+						<td id="SUP"></td>
+					</tr>
+					<tr>
+						<th scope="row">Role</th>
+						<td id="ROLE"></td>
+					</tr>
+					<tr>
+						<th scope="row">Award Available</th>
+						<td id="TUIT"></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+		<div class="my-5 mx-4" style="width: 70%; float: right">
+			<table class="table table-hover table-bordered table-responsive" id="body">
+				<thead>
+					<h5>Your Forms</h5>
+					<tr>
+						<th scope="col">Form ID</th>
+						<th scope="col">Event Type</th>
+						<th scope="col">Description</th>
+						<th scope="col">Date</th>
+						<th scope="col">Time</th>
+						<th scope="col">Location</th>
+						<th scope="col">Cost</th>
+						<th scope="col">Status</th>
+						<th scope="col">Grading Format</th>
+						<th scope="col">Grade Cutoff</th>
+						<th scope="col">Attachment</th>
+						<th scope="col">Time Off</th>
+						<th scope="col">Urgency</th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+			<button type="newFrom" class="btn btn-primary"
+                onclick="getUsersForms();">Refresh Table</button>
+                <button type="newFrom" class="btn btn-primary"
+                onclick="newFormPage();">New Form</button>
+                
+		</div>
+
+        <div class="my-5 mx-4" style="width: 100%; float: inline-end">
+			<table class="table table-hover table-bordered table-responsive" id="body2">
+				<thead>
+					<h5>Awaiting your approval</h5>
+					<tr>
+                        <th scope="col">Approve</th>
+                        <th scope="col">Decline</th>
+						<th scope="col">Form ID</th>
+						<th scope="col">Event Type</th>
+						<th scope="col">Description</th>
+						<th scope="col">Date</th>
+						<th scope="col">Time</th>
+						<th scope="col">Location</th>
+						<th scope="col">Cost</th>
+						<th scope="col">Event Type</th>
+						<th scope="col">Grading Format</th>
+						<th scope="col">Grade Cutoff</th>
+						<th scope="col">Attachment</th>
+						<th scope="col">Time Off</th>
+						<th scope="col">Urgency</th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+			<button type="newForm" class="btn btn-primary"
+                onclick="getSubForms();">Refresh Table</button>
+                <!-- <button type="newForm" class="btn btn-primary"
+                onclick="newFormPage();">New Form</button> -->
+                
+		</div>
+
+	</div>
+</body>
+
+<script>
+
+	function newFormPage() {
+		
+		window.location.href='http://localhost:8080/TuitionReimMGMTSys/newForm.html';
+	}
+
+    function approve(id_click) {
+        let json_id = {
+            id: id_click
+        }
+
+    	let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            	
+            }
+        }
+    	xhttp.open("POST", "http://localhost:8080/TuitionReimMGMTSys/approve.do");
+        xhttp.send(JSON.stringify(json_id));
+    }
+
+    function deleteclick(id){
+        decline(id);
+    }
+
+    function decline(id) {
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/deleteForm.do?id=" +id, true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function loggedInUser() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                emp = JSON.parse(this.responseText);
+                console.log(emp);
+
+                let fname = `${emp.first_name}`;
+                let lname = `${emp.last_name}`;
+                let identity = `${emp.id}`;
+                //let dept = `${emp.department_id}`;
+                //let sup = `${emp.super_id}`;
+                //let role = `${emp.role_id}`;
+                let taa = `${emp.award_available}`;
+                document.getElementById("welcome").innerText = `Welcome, ${emp.username}`
+                document.getElementById("FN").innerHTML = fname;
+                document.getElementById("LN").innerHTML = lname;
+                document.getElementById("ID").innerHTML = identity;
+                //document.getElementById("DEPT").innerHTML = dept;
+                //document.getElementById("SUP").innerHTML = sup;
+                //document.getElementById("ROLE").innerHTML = role;
+                document.getElementById("TUIT").innerHTML = taa;
+                getDept();
+                getSuper();
+                getRole();
+
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getCurrentUser.do");
+        xhttp.send();
+    }
+
+    function getDept() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                dept = JSON.parse(this.responseText);
+                console.log(dept);
+
+                let dname = `${dept.dept_name}`;
+                document.getElementById("DEPT").innerHTML = dname;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getDepartment.do?id=" +`${emp.department_id}`, true);
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send();
+    }
+
+    function getEventTypeForm() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                event_type_iddd = JSON.parse(this.responseText);
+                console.log(dept);
+
+                let event_type_idd = row.insertCell();
+                event_type_idd.innerHTML = event_type_iddd.name;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getEventType.do?id=" +`${forms[z].event_type_id}`, true);
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send();
+    }
+    function getGradingFromatForm() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                dept = JSON.parse(this.responseText);
+                console.log(dept);
+
+                let dname = `${dept.dept_name}`;
+                document.getElementById("DEPT").innerHTML = dname;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getDepartment.do?id=" +`${emp.department_id}`, true);
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send();
+    }
+    function getCuttoffForm() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                dept = JSON.parse(this.responseText);
+                console.log(dept);
+
+                let dname = `${dept.dept_name}`;
+                document.getElementById("DEPT").innerHTML = dname;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getDepartment.do?id=" +`${emp.department_id}`, true);
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send();
+    }
+    function getDeptForm() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                dept = JSON.parse(this.responseText);
+                console.log(dept);
+
+                let dname = `${dept.dept_name}`;
+                document.getElementById("DEPT").innerHTML = dname;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getDepartment.do?id=" +`${emp.department_id}`, true);
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send();
+    }
+
+    function getDeptForm() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                dept = JSON.parse(this.responseText);
+                console.log(dept);
+
+                let dname = `${dept.dept_name}`;
+                document.getElementById("DEPT").innerHTML = dname;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getDepartment.do?id=" +`${emp.department_id}`, true);
+        //Set a Request Header which will indicate to the Server that the Request Body will be JSON
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        //Send, but now we will pass in the Request Body as a parameter of the function
+        xhttp.send();
+    }
+
+    function getSuper() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                superv = JSON.parse(this.responseText);
+                console.log(superv);
+
+                let supname = `${superv.first_name} ${superv.last_name}`;
+                document.getElementById("SUP").innerHTML = supname;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getSuperById.do?id=" +`${emp.super_id}`, true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function getRole(){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                role = JSON.parse(this.responseText);
+                console.log(role);
+
+                let rname = `${role.role_name}`;
+                document.getElementById("ROLE").innerHTML = rname;
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getRole.do?id=" +`${emp.role_id}`, true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function logout() {
+
+        //Make an AJAX Call
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //console.log(this.responseText);
+                window.location.href = "http://localhost:8080/TuitionReimMGMTSys/index.html";
+            }
+        }
+
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getLogout.do", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function getUsersForms() {
+        //Make an AJAX Call
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                
+                let forms = JSON.parse(this.responseText);
+                
+                let table_body = document.getElementById("body") 
+                for (var z = 0; z < forms.length; z++) {
+                    let row = table_body.insertRow();
+                    row.setAttribute("onclick","inspect()",0)
+
+                    let id = row.insertCell();
+                    id.innerHTML = forms[z].id;
+                    let event_type_id = row.insertCell();
+                    event_type_id.innerHTML = forms[z].event_type_id;
+                    let description = row.insertCell();
+                    description.innerHTML = forms[z].description;
+                    let d = row.insertCell();
+                    d.innerHTML = "NA";
+                    let m = row.insertCell();
+                    m.innerHTML = "NA";
+                    let location = row.insertCell();
+                    location.innerHTML = forms[z].location;
+                    let cost = row.insertCell();
+                    cost.innerHTML = forms[z].cost;
+                    let event_type_idd = row.insertCell();
+                    event_type_idd.innerHTML = forms[z].event_type_id;
+                    let grade_format= row.insertCell();
+                    grade_format.innerHTML = forms[z].grade_format;
+                    let grade_cutoff = row.insertCell();
+                    grade_cutoff.innerHTML = forms[z].grade_cutoff;
+                    let j = row.insertCell();
+                    j.innerHTML = "NA";
+                    let time_off = row.insertCell();
+                    time_off.innerHTML = forms[z].time_off;
+                    let urgent = row.insertCell();
+                    urgent.innerHTML = forms[z].urgent;
+                
+                }
+            }
+        }
+
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getAllFormsByUser.do", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function getSubForms() {
+        //Make an AJAX Call
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                
+                let forms = JSON.parse(this.responseText);
+                
+                //correct this
+                let table_body = document.getElementById("body2") 
+                for (var z = 0; z < forms.length; z++) {
+                    let row = table_body.insertRow();
+                    //row.setAttribute("onclick","inspect()",0)
+
+                    let approve_button = row.insertCell();
+                    approve_button.innerHTML =`<button id=${forms[z].id} class='btn btn-link' onclick='approve(this.id);'>✓</button>`;
+                    let decline_button = row.insertCell();
+                    decline_button.innerHTML = `<button id=${forms[z].id} class='btn btn-link' onclick='deleteclick(this.id);'>X</button>`;
+                    let id = row.insertCell();
+                    id.innerHTML = forms[z].id;
+                    let event_type_id = row.insertCell();
+                    event_type_id.innerHTML = forms[z].event_type_id;
+                    let description = row.insertCell();
+                    description.innerHTML = forms[z].description;
+                    let d = row.insertCell();
+                    d.innerHTML = "NA";
+                    let m = row.insertCell();
+                    m.innerHTML = "NA";
+                    let location = row.insertCell();
+                    location.innerHTML = forms[z].location;
+                    let cost = row.insertCell();
+                    cost.innerHTML = forms[z].cost;
+                    let event_type_idd = row.insertCell();
+                    event_type_idd.innerHTML = forms[z].event_type_id;
+                    let grade_format= row.insertCell();
+                    grade_format.innerHTML = forms[z].grade_format;
+                    let grade_cutoff = row.insertCell();
+                    grade_cutoff.innerHTML = forms[z].grade_cutoff;
+                    let j = row.insertCell();
+                    j.innerHTML = "NA";
+                    let time_off = row.insertCell();
+                    time_off.innerHTML = forms[z].time_off;
+                    let urgent = row.insertCell();
+                    urgent.innerHTML = forms[z].urgent;
+                    
+                }
+            }
+        }
+
+        xhttp.open("GET", "http://localhost:8080/TuitionReimMGMTSys/getAllFormsUnderUser.do", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send();
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+</script>
+
+</html>

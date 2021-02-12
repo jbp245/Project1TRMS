@@ -218,7 +218,7 @@ public class Employee {
 	public String toString() {
 		return "Employee [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", username="
 				+ username + ", password=" + password + ", super_id=" + super_id + ", department_id=" + department_id
-				+ ", role_id=" + role_id + ", award_available=" + award_available + ", MAX_AWARD=" + MAX_AWARD + "]";
+				+ ", role_id=" + role_id + ", award_available=" + award_available + "]";
 	}
 
 	

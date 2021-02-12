@@ -13,7 +13,7 @@ import dev.patten.repositories.RolesDAOimpl;
  * @author james
  *
  */
-public class RolesServiceImpl implements ServiceREADable<Roles> {
+public class RolesServiceImpl implements RolesService {
 
 	public READable<Roles> dao = new RolesDAOimpl();
 	

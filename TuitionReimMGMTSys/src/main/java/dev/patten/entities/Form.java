@@ -4,8 +4,6 @@
 package dev.patten.entities;
 
 import java.sql.Blob;
-import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  * @author james
@@ -17,8 +15,8 @@ public class Form {
 	private String first_name;
 	private String last_name;
 	private int emp_id;
-	private Date date;
-	private Timestamp time;
+	private String date;
+	private String time;
 	private String location;
 	private String description;
 	private double cost;
@@ -30,7 +28,7 @@ public class Form {
 	private int time_off;
 	private boolean urgent;
 	
-	public Form (int id) {super(); this.id = 10;}
+	//public Form (int id) {super(); this.id = 10;}
 	
 	/**
 	 * DEFAULT CONSTRUCTOR:
@@ -56,7 +54,7 @@ public class Form {
 	 * @param time_off
 	 * @param urgency
 	 */
-	public Form(String first_name, String last_name, int emp_id, Date date, Timestamp time, String location,
+	public Form(String first_name, String last_name, int emp_id, String date, String time, String location,
 			String description, double cost, boolean grade_format, int grade_cutoff, int event_type_id, Blob attachment,
 			int approval_type, int time_off, boolean urgency) {
 		super();
@@ -95,7 +93,7 @@ public class Form {
 	 * @param time_off
 	 * @param urgency
 	 */
-	public Form(int id, String first_name, String last_name, int emp_id, Date date, Timestamp time, String location,
+	public Form(int id, String first_name, String last_name, int emp_id, String date, String time, String location,
 			String description, double cost, boolean grade_format, int grade_cutoff, int event_type_id, Blob attachment,
 			int approval_type, int time_off, boolean urgency) {
 		super();
@@ -176,28 +174,28 @@ public class Form {
 	/**
 	 * @return the date
 	 */
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
 	/**
 	 * @return the time
 	 */
-	public Timestamp getTime() {
+	public String getTime() {
 		return time;
 	}
 
 	/**
 	 * @param time the time to set
 	 */
-	public void setTime(Timestamp time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

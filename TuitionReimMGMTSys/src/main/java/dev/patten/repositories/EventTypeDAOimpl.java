@@ -52,7 +52,6 @@ public class EventTypeDAOimpl implements READable<EventType> {
 	@Override
 	public List<EventType> getAll() {
 		List<EventType> eventTypes = new ArrayList<EventType>();
-
 		try {
 			String sql = "SELECT * FROM event_type";
 			PreparedStatement ps = conn.prepareStatement(sql);

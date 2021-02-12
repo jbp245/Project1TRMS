@@ -18,6 +18,8 @@ public class ApprovalStatus {
 	private boolean dept_approved;
 	private String dept_appr_desc;
 	private boolean benco_approved;
+	private String benco_appr_desc;
+	private int grade;
 
 	/**
 	 * DEFAULT CONSTRUCTOR
@@ -34,9 +36,10 @@ public class ApprovalStatus {
 	 * @param dept_approved
 	 * @param dept_appr_desc
 	 * @param benco_approved
+	 * @param benco_appr_desc
 	 */
 	public ApprovalStatus(int status, int event_id, boolean sup_approved, boolean dept_approved, String dept_appr_desc,
-			boolean benco_approved, String status_name) {
+			boolean benco_approved, String status_name, String benco_appr_desc, int grade) {
 		super();
 		this.status = status;
 		this.event_id = event_id;
@@ -45,6 +48,9 @@ public class ApprovalStatus {
 		this.dept_appr_desc = dept_appr_desc;
 		this.benco_approved = benco_approved;
 		this.status_name = status_name;
+		this.benco_appr_desc = benco_appr_desc;
+		this.setGrade(grade);
+		
 	}
 
 	/**
@@ -173,11 +179,40 @@ public class ApprovalStatus {
 		this.benco_approved = benco_approved;
 	}
 
+	/**
+	 * @return the benco_appr_desc
+	 */
+	public String getBenco_appr_desc() {
+		return benco_appr_desc;
+	}
+
+	/**
+	 * @param benco_appr_desc the benco_appr_desc to set
+	 */
+	public void setBenco_appr_desc(String benco_appr_desc) {
+		this.benco_appr_desc = benco_appr_desc;
+	}
+
+	/**
+	 * @return the grade
+	 */
+	public int getGrade() {
+		return grade;
+	}
+
+	/**
+	 * @param grade the grade to set
+	 */
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+
 	@Override
 	public String toString() {
 		return "ApprovalStatus [id=" + id + ", status=" + status + ", status_name=" + status_name + ", event_id="
-				+ event_id + ", sup_approved=" + sup_approved + ", dept_approved=" + dept_approved + ", dept_appr_desc="
-				+ dept_appr_desc + ", benco_approved=" + benco_approved + "]";
+				+ event_id + ", sup_approved=" + sup_approved + ", sup_appr_desc=" + sup_appr_desc + ", dept_approved="
+				+ dept_approved + ", dept_appr_desc=" + dept_appr_desc + ", benco_approved=" + benco_approved
+				+ ", benco_appr_desc=" + benco_appr_desc + ", grade=" + grade + "]";
 	}
 
 }

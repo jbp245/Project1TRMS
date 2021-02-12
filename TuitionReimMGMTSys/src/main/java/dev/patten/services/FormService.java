@@ -10,5 +10,5 @@ import dev.patten.entities.Form;
  *
  */
 public interface FormService extends Serviceable<Form> {
-
+	//public long dateHandler(String date);
 }

@@ -3,6 +3,8 @@
  */
 package dev.patten.services;
 
+import java.util.List;
+
 import dev.patten.entities.Employee;
 
 /**
@@ -11,6 +13,15 @@ import dev.patten.entities.Employee;
  */
 public interface EmployeeService extends Serviceable<Employee> {
 
-	boolean submitForm();
+	boolean adjustAwardAvail(double change);
+
+	Employee login(String username, String password);
 	
+	boolean logout();
+	
+	Employee getByUsername(String username);
+	
+	List<Employee> getAllUnder(Employee subject);
+
+	List<Employee> getAllAbove(Employee subject, List<Employee> employees);
 }
