@@ -32,7 +32,20 @@ The Tuition Reimbursement Management System is a workflow management system that
 * Convert db primary keys to their string value pair in "requires approval" table
 
 ## Getting Started
-1. Clone from Github
+1. Clone from Github (git clone https://github.com/jbp245/Project1TRMS.git)
 2. Request DB snapshot from james.patten@revature.net
-3. Set JDBC credentials in connections file (currently set to environment variables)
+3. Set JDBC credentials in connections file
 4. Run as application and access index.html
+
+## Usage
+1. Login 
+  * users: pbeesly, mscott, kmalone, kmartin, rhoward
+  * passwords: pass
+2. Refresh tables using refresh buttons
+3. Create a new form in form request section
+4. Submit form
+5. Refresh tables as necessary
+6. Optionally approve or deny subordinate requests
+7. Logout
+8. Repeat with other users
+
